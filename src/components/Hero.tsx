@@ -8,7 +8,11 @@ const Hero: React.FC = () => {
   const [imgHeight, setImgHeight] = useState<number>(0);
 
   useEffect(() => {
-    setImgHeight(window.innerHeight);
+    const updateHeight = () => setImgHeight(window.innerHeight);
+    updateHeight();
+
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
   return (
