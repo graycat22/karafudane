@@ -107,15 +107,13 @@ const HeroBackground = () => {
         alt="background"
         width={Math.round(imgWidth)}
         height={Math.round(imgHeight)}
-        sizes="100vw"
-        className="relative z-10 transition-transform duration-300"
+        className="absolute top-1/2 left-1/2 z-10 transition-transform duration-300"
         style={{
-          transform: `translate(${position.x * 2}px, ${position.y * 2}px)`,
+          transform: `translate(-50%, -50%) translate(${position.x * 2}px, ${
+            position.y * 2
+          }px)`,
         }}
         draggable={false}
-        onLoadingComplete={(img) => {
-          setAspectRatio(img.naturalWidth / img.naturalHeight);
-        }}
       />
     </div>
   );
