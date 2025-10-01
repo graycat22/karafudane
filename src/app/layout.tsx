@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://karafu.jp"),
 };
 
-// iOSでinputフォーカス時のズームを防ぐ
+// --- iOSでinputフォーカス時のズームを防ぐ ---
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
