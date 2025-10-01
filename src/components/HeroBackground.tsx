@@ -8,7 +8,7 @@ const HeroBackground = () => {
   const [imgHeight, setImgHeight] = useState<number>(0);
   const [aspectRatio, setAspectRatio] = useState<number>(4289 / 2800);
 
-  // サイズ調整
+  // 画像サイズ調整
   useEffect(() => {
     const updateSize = () => {
       const maxWidth = window.innerWidth * 0.9;
@@ -30,7 +30,7 @@ const HeroBackground = () => {
   }, [aspectRatio]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center overflow-hidden bg-amber-300 -z-10">
+    <div className="fixed w-full h-full flex items-center justify-center overflow-hidden bg-amber-300 -z-10">
       {/* 背景画像 */}
       <Image
         src="/Hero/kitachan.webp"
