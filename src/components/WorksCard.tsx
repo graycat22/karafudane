@@ -21,7 +21,7 @@ const WorksCard = () => {
   }, []);
 
   return (
-    <div className="relative z-20">
+    <section className="relative z-20">
       <div className="bg-transparent">
         {/* 上の波線 */}
         <svg
@@ -52,7 +52,7 @@ const WorksCard = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
