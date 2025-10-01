@@ -18,6 +18,18 @@ const HeroBackground = () => {
 
   // --- サイズ調整 ---
   useEffect(() => {
+    const setAppHeight = () => {
+      document.documentElement.style.setProperty(
+        "--app-height",
+        `${window.innerHeight}px`
+      );
+    };
+    setAppHeight();
+    window.addEventListener("resize", setAppHeight);
+    return () => window.removeEventListener("resize", setAppHeight);
+  }, []);
+
+  useEffect(() => {
     const updateSize = () => {
       const maxWidth = window.innerWidth * 0.9;
       let newWidth = maxWidth;
@@ -86,7 +98,10 @@ const HeroBackground = () => {
   }, [target]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center overflow-hidden z-0">
+    <div
+      className="fixed inset-0 flex items-center justify-center overflow-hidden z-0"
+      style={{ height: "var(--app-height)" }}
+    >
       {/* 光のエフェクト（後ろに配置） */}
       <div
         className="absolute w-[800px] h-[800px] rounded-full bg-purple-400 opacity-30 blur-3xl transition-transform duration-300"
@@ -107,13 +122,15 @@ const HeroBackground = () => {
         alt="background"
         width={Math.round(imgWidth)}
         height={Math.round(imgHeight)}
-        className="absolute top-1/2 left-1/2 z-10 transition-transform duration-300"
+        sizes="100vw"
+        className="relative z-10 transition-transform duration-300"
         style={{
-          transform: `translate(-50%, -50%) translate(${position.x * 2}px, ${
-            position.y * 2
-          }px)`,
+          transform: `translate(${position.x * 2}px, ${position.y * 2}px)`,
         }}
         draggable={false}
+        onLoadingComplete={(img) => {
+          setAspectRatio(img.naturalWidth / img.naturalHeight);
+        }}
       />
     </div>
   );
