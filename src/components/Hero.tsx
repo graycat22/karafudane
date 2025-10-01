@@ -5,24 +5,18 @@ import HeroBackground from "./HeroBackground";
 import HeroContents from "./HeroContents";
 
 const Hero: React.FC = () => {
-  const [imgHeight, setImgHeight] = useState<number>(0);
+  const [heroHeight, setHeroHeight] = useState<number>(0);
 
   useEffect(() => {
-    setImgHeight(window.innerHeight);
-
-    // const updateHeight = () => setImgHeight(window.innerHeight);
-    // updateHeight();
-
-    // window.addEventListener("resize", updateHeight);
-    // return () => window.removeEventListener("resize", updateHeight);
+    setHeroHeight(window.innerHeight);
   }, []);
 
   return (
     <section
       className="relative w-full z-10 flex items-center justify-center"
-      style={{ height: `${imgHeight}px` }}
+      style={{ height: `${heroHeight}px` }}
     >
-      <HeroBackground />
+      <HeroBackground heroHeight={heroHeight} />
       <HeroContents />
     </section>
   );
