@@ -8,37 +8,30 @@ const HeroBackground = () => {
   const [imgHeight, setImgHeight] = useState<number>(0);
   const [aspectRatio, setAspectRatio] = useState<number>(4289 / 2800);
 
-  // 画像サイズ調整
   useEffect(() => {
-    const updateSize = () => {
-      const maxWidth = window.innerWidth * 0.9;
-      let newWidth = maxWidth;
-      let newHeight = newWidth / aspectRatio;
+    // 初回ロード時のみ計算
+    const maxWidth = window.innerWidth * 0.9;
+    let newWidth = maxWidth;
+    let newHeight = newWidth / aspectRatio;
 
-      if (newHeight > window.innerHeight) {
-        newHeight = window.innerHeight;
-        newWidth = newHeight * aspectRatio;
-      }
+    if (newHeight > window.innerHeight) {
+      newHeight = window.innerHeight;
+      newWidth = newHeight * aspectRatio;
+    }
 
-      setImgWidth(newWidth);
-      setImgHeight(newHeight);
-    };
-
-    updateSize();
-    window.addEventListener("resize", updateSize);
-    return () => window.removeEventListener("resize", updateSize);
+    setImgWidth(newWidth);
+    setImgHeight(newHeight);
   }, [aspectRatio]);
 
   return (
-    <div className="fixed w-full h-full flex items-center justify-center overflow-hidden bg-amber-300 -z-10">
-      {/* 背景画像 */}
+    <div className="fixed inset-0 flex items-center justify-center overflow-hidden bg-amber-300 -z-10">
       <Image
         src="/Hero/kitachan.webp"
         alt="background"
         width={Math.round(imgWidth)}
         height={Math.round(imgHeight)}
         sizes="100vw"
-        className="relative z-10 transition-transform duration-300"
+        className="top-10 z-10 transition-transform duration-300"
         draggable={false}
         onLoadingComplete={(img) => {
           setAspectRatio(img.naturalWidth / img.naturalHeight);
