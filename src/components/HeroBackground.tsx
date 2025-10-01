@@ -18,18 +18,6 @@ const HeroBackground = () => {
 
   // --- サイズ調整 ---
   useEffect(() => {
-    const setAppHeight = () => {
-      document.documentElement.style.setProperty(
-        "--app-height",
-        `${window.innerHeight}px`
-      );
-    };
-    setAppHeight();
-    window.addEventListener("resize", setAppHeight);
-    return () => window.removeEventListener("resize", setAppHeight);
-  }, []);
-
-  useEffect(() => {
     const updateSize = () => {
       const maxWidth = window.innerWidth * 0.9;
       let newWidth = maxWidth;
@@ -98,10 +86,7 @@ const HeroBackground = () => {
   }, [target]);
 
   return (
-    <div
-      className="fixed inset-0 flex items-center justify-center overflow-hidden z-0"
-      style={{ height: "var(--app-height)" }}
-    >
+    <div className="fixed inset-0 flex items-center justify-center overflow-hidden z-0">
       {/* 光のエフェクト（後ろに配置） */}
       <div
         className="absolute w-[800px] h-[800px] rounded-full bg-purple-400 opacity-30 blur-3xl transition-transform duration-300"
