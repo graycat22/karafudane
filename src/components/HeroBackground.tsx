@@ -30,7 +30,7 @@ const HeroBackground = () => {
   }, [aspectRatio]);
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center overflow-hidden bg-amber-300">
+    <div className="fixed inset-0 flex items-center justify-center overflow-hidden bg-amber-300 -z-10">
       {/* 背景画像 */}
       <Image
         src="/Hero/kitachan.webp"
@@ -38,7 +38,7 @@ const HeroBackground = () => {
         width={Math.round(imgWidth)}
         height={Math.round(imgHeight)}
         sizes="100vw"
-        className="transition-transform duration-300"
+        className="relative z-10 transition-transform duration-300"
         draggable={false}
         onLoadingComplete={(img) => {
           setAspectRatio(img.naturalWidth / img.naturalHeight);
