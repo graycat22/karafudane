@@ -16,7 +16,7 @@ const mPlus1p = M_PLUS_1p({
 export const metadata: Metadata = {
   title: "Karafu Official Website",
   description:
-    "からふ．イラストレーター．ポップで可愛いイラストが得意．お仕事お待ちしております！",
+    "からふ．イラストレーター．可愛くてしっとりとしたイラストが得意．お仕事お待ちしております！",
   metadataBase: new URL("https://karafu.jp"),
 };
 

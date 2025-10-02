@@ -28,3 +28,16 @@ body {
   color: var(--foreground); */
   font-family: "M PLUS 1P";
 }
+
+@keyframes scrollRightToLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scrollRightToLeft 20s linear infinite;
+}

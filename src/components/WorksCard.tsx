@@ -1,6 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
+
+export const worksPathList = [
+  "/works/kitachan.webp",
+  "/works/satochan.webp",
+  "/works/carrenchan.webp",
+  "/works/cafechan.webp",
+];
 
 const WorksCard = () => {
   // 左右端と中央で別のオフセットを管理
@@ -44,12 +52,25 @@ const WorksCard = () => {
           />
         </svg>
 
-        <div className="h-[2000px] bg-white max-w-6xl mx-auto -mt-1">
-          <h2 className="text-3xl font-bold mb-8">Works</h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <li className="p-4 rounded-lg">作品1</li>
-            <li className="p-4 rounded-lg">作品2</li>
-          </ul>
+        <div className="h-[2000px] bg-white mx-auto -mt-1">
+          <div className=" pt-10 pl-6">
+            <h2 className="text-3xl font-bold">Works</h2>
+            <p>可愛くてしっとりとしたイラストが得意です</p>
+          </div>
+          <div className="w-full overflow-hidden">
+            <div className="relative overflow-hidden">
+              <ul className="flex gap-8 animate-scrol">
+                {worksPathList.map((work, index) => (
+                  <li
+                    key={index}
+                    className="flex-shrink-0 w-1/3 sm:w-1/4 md:w-1/5 relative overflow-hidden aspect-[3/4] rounded-2xl"
+                  >
+                    <Image src={work} alt={work} fill objectFit="cover" />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>

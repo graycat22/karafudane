@@ -1,8 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import HeroBackground from "./HeroBackground";
 import HeroContents from "./HeroContents";
+
+// ヒーロー画像のパスリスト。固定化しないと毎回新しい配列が作られて、useCallbackが無意味。useMemoを使ってもOK
+export const heroPathList = [
+  "/hero/kitachan.webp",
+  "/hero/satochan.webp",
+  "/hero/carrenchan.webp",
+  "/hero/cafechan.webp",
+];
 
 const Hero: React.FC = () => {
   const [heroSource, setHeroSource] = useState<string>("/hero/kitachan.webp");
@@ -13,22 +21,21 @@ const Hero: React.FC = () => {
     setHeroHeight(window.innerHeight);
   }, []);
 
-  // Hero 画像変更
-  const changeHeroImage = () => {
-    // 画像のパスリスト
-    const heroPathsList = [
-      "/hero/kitachan.webp",
-      "/hero/satochan.webp",
-      "/hero/carrenchan.webp",
-      "/hero/cafechan.webp",
-    ];
+  // 画像変更ロジック
+  const changeHeroImage = useCallback(() => {
+    const candidates = heroPathList.filter((src) => src !== heroSource);
+    const randomIndex = Math.floor(Math.random() * candidates.length);
+    setHeroSource(candidates[randomIndex]);
+  }, [heroSource]); // 依存関係に入れるのは「レンダーごとに変わる値」や「props / state」だけ
 
-    // パスリストから現在のパスを除外してランダム取得
-    const randomIndex = Math.floor(
-      Math.random() * heroPathsList.filter((src) => src !== heroSource).length
-    );
-    setHeroSource(heroPathsList[randomIndex]);
-  };
+  // 5秒ごとに自動で画像切り替え
+  useEffect(() => {
+    const interval = setInterval(() => {
+      changeHeroImage();
+    }, 5000);
+
+    return () => clearInterval(interval); // クリーンアップ
+  }, [changeHeroImage]);
 
   return (
     <section

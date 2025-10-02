@@ -76,7 +76,7 @@ const HeroBackground: React.FC<Props> = ({ heroHeight, heroSource }) => {
         width={Math.round(imgWidth)}
         height={Math.round(imgHeight)}
         sizes="100vw"
-        className="transition-transform duration-75" // 少しスムーズ
+        className="transition-transform duration-75"
         draggable={false}
         style={{
           position: "absolute",
